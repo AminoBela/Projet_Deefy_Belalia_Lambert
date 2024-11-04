@@ -1,43 +1,49 @@
 <?php
+
 namespace iutnc\deefy\dispatch;
 
-use iutnc\deefy\action\AddUserAction;
-use iutnc\deefy\action\AddPlaylistAction;
-use iutnc\deefy\action\AddPodcasttrackAction;
-use iutnc\deefy\action\SigninAction;
-use iutnc\deefy\action\DisplayPlaylistAction;
+use iutnc\deefy\controller\PlaylistController;
+use iutnc\deefy\controller\TrackController;
+use iutnc\deefy\controller\UserController;
 
-class Dispatcher{
+
+class Dispatcher {
     private string $action;
 
-    public function __construct(){
-        $this->action ="";
-        if(isset($_GET['action'])) $this->action = $_GET['action'];
+    public function __construct() {
+        $this->action = "";
+        if (isset($_GET['action'])) $this->action = $_GET['action'];
     }
 
     public function run(): void {
-        $res="Bienvenue !";
-        switch($this->action){
-            case 'add-user': 
-                $res = (new AddUserAction())->execute();
+        $res = "Bienvenue !";
+        switch ($this->action) {
+            case 'add-user':
+                $res = (new UserController())->addUser();
                 break;
-            case 'add-playlist':
-                $res = (new AddPlaylistAction())->execute();
+            case 'sign-in':
+                $res = (new UserController())->signIn();
                 break;
-            case 'add-podcasttrack': 
-                $res = (new AddPodcasttrackAction())->execute();
-                break;
-            case 'sign-in': 
-                $res = (new SigninAction())->execute();
+            case 'create-playlist':
+                $res = (new PlaylistController())->createPlaylist();
                 break;
             case 'display-playlist':
-                $res = (new DisplayPlaylistAction())->execute();
+                $res = (new PlaylistController())->displayCurrentPlaylist();
+                break;
+            case 'add-track':
+                $res = (new TrackController())->addTrack();
+                break;
+            case 'my-playlists':
+                $res = (new PlaylistController())->displayUserPlaylists();
+                break;
+            default:
+                $res = "Action inconnue.";
                 break;
         }
         $this->renderPage($res);
     }
 
-    private function renderPage(string $html): void{
+    private function renderPage(string $html): void {
         echo <<<end
             <!DOCTYPE html>
             <html lang="fr" dir="ltr">
@@ -52,10 +58,9 @@ class Dispatcher{
                     <h1>Deefy</h1>
                     <ul>
                         <li><a href="?" class ="boutton">Accueil</a></li>
-                        <li><a href="?action=add-playlist" class ="boutton">Créer Playlist</a></li>
-                        <li><a href="?action=add-podcasttrack" class ="boutton">Ajouter une piste à la playlist</a></li>
+                        <li><a href="?action=my-playlists" class ="boutton">Mes Playlists</a></li>
+                        <li><a href="?action=create-playlist" class ="boutton">Créer Playlist</a></li>
                         <li><a href="?action=display-playlist" class ="boutton">Afficher Playlist</a></li>
-                        <p>---------------------</p>
                         <li><a href="?action=add-user" class ="boutton">Créer mon compte</a></li>
                         <li><a href="?action=sign-in" class ="boutton">Se connecter</a></li>
                     </ul>

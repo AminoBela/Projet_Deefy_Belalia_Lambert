@@ -2,54 +2,55 @@
 
 namespace iutnc\deefy\auth;
 
+use iutnc\deefy\db\ConnectionFactory;
 use iutnc\deefy\exception\AuthException;
 
 use PDO;
 
 class Auth{
 
-    public static function authenticate(string $e, string $p):bool{
-        $bd = \iutnc\deefy\db\ConnectionFactory::makeConnection();
-        $query = "select passwd, role from User where email = ? ";
+    const MIN_PASSWORD_LENGTH = 10;
+    const ERROR_PASSWORD_MISMATCH = 'Les mots de passe ne correspondent pas';
+    const ERROR_PASSWORD_LENGTH = 'Le mot de passe doit contenir au moins 10 caractères';
+    const ERROR_AUTH_FAILED = 'Identifiant ou mot de passe invalide';
+
+    public static function authenticate(string $e, string $p): bool {
+        $bd = ConnectionFactory::makeConnection();
+        $query = "SELECT passwd, role FROM User WHERE email = ?";
         $prep = $bd->prepare($query);
-        $prep->bindParam(1,$e);
-        $bool = $prep->execute();
-        $data =$prep->fetch(PDO::FETCH_ASSOC);
-        $hash=$data['passwd'];
-        if (!password_verify($p, $hash)&&$bool)throw new AuthException("Mot de passe Incorrect");
-        $_SESSION['user']['id']=$e;
-        $_SESSION['user']['role']=$data['role'];;
+        $prep->bindParam(1, $e);
+        $prep->execute();
+        $data = $prep->fetch(\PDO::FETCH_ASSOC);
+        $hash = $data['passwd'];
+        if (!password_verify($p, $hash)) {
+            throw new AuthException(self::ERROR_AUTH_FAILED);
+        }
+        $_SESSION['user']['id'] = $e;
+        $_SESSION['user']['role'] = $data['role'];
         return true;
     }
 
-    
-    public static function register(string $e, string $p):String{
+    public static function register(string $e, string $p): string {
         $res = "Echec inscription";
-        $minimumLength = 10;
-
-        //verification compte
-        $bd = \iutnc\deefy\db\ConnectionFactory::makeConnection();
-        $query = "select passwd from User where email = ? ";
+        $bd = ConnectionFactory::makeConnection();
+        $query = "SELECT passwd FROM User WHERE email = ?";
         $prep = $bd->prepare($query);
-        $prep->bindParam(1,$e);
+        $prep->bindParam(1, $e);
         $prep->execute();
-        $d = $prep->fetchall(PDO::FETCH_ASSOC);
-        if((strlen($p) >= $minimumLength)&&(sizeof($d)==0)){
-            //hash the password
-            $hash = password_hash($p, PASSWORD_DEFAULT,['cost'=>10]);
-            
-            //prepare the insert
-            $insert = "INSERT into user (email, passwd) values(?,?)";
+        $d = $prep->fetchAll(\PDO::FETCH_ASSOC);
+        if (strlen($p) >= self::MIN_PASSWORD_LENGTH && empty($d)) {
+            $hash = password_hash($p, PASSWORD_DEFAULT, ['cost' => 10]);
+            $insert = "INSERT INTO user (email, passwd) VALUES (?, ?)";
             $prep = $bd->prepare($insert);
-            $prep->bindParam(1,$e);
-            $prep->bindParam(2,$hash);
-            $bool = $prep->execute();
-            if($bool){
-                $res = "inscription Reussite";
+            $prep->bindParam(1, $e);
+            $prep->bindParam(2, $hash);
+            if ($prep->execute()) {
+                $res = "Inscription réussie";
             }
         }
         return $res;
     }
+
     public static function checkAccess(int $id):bool{
         $res=false;
         
