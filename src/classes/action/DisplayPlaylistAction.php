@@ -1,6 +1,11 @@
 <?php
+
 namespace iutnc\deefy\action;
+use iutnc\deefy\audio\lists\PlayList;
+use iutnc\deefy\render\AudioListRenderer;
+use iutnc\deefy\auth\Auth;
 use Exception;
+
 class DisplayPlaylistAction extends Action {
     
     public function __construct(){
@@ -10,16 +15,16 @@ class DisplayPlaylistAction extends Action {
     public function execute() : string{
         $res="";
         if(isset($_GET['id'])){
-            if(\iutnc\deefy\auth\Auth::checkAccess(intval($_GET['id']))){
-                $p = \iutnc\deefy\audio\lists\PlayList::find(intval($_GET['id']));
-                $r  = new \iutnc\deefy\render\AudioListRenderer($p);
+            if(Auth::checkAccess(intval($_GET['id']))){
+                $p = PlayList::find(intval($_GET['id']));
+                $r  = new AudioListRenderer($p);
                 $res = $r->render();
             }else{
                 try{
-                    $p = \iutnc\deefy\audio\lists\PlayList::find(intval($_GET['id']));
-                    $res = "Accès refusé : forbidden";   
+                    $p = PlayList::find(intval($_GET['id']));
+                    $res = "Accès refusé à la playlist {$p->nom}";
                 }catch(Exception $e){
-                    $res = "Playliste avec id {$_GET['id']} n'éxiste pas";
+                    $res = "Playlist avec id {$_GET['id']} n'éxiste pas";
                 }
             }
         }else{

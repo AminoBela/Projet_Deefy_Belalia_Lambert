@@ -1,13 +1,12 @@
 <?php
+
 declare(strict_types=1);
+
 namespace iutnc\deefy\audio\tracks;
-require_once 'vendor/autoload.php';
 
-
-use iutnc\deefy\exception\InvalidPropertyNameException as InvalidPropertyNameException;
-use iutnc\deefy\exception\NonEditablePropertyException as NonEditablePropertyException;
-use iutnc\deefy\exception\InvalidPropertyNameException as InvalidPropertyValueException;
-use PDO;
+use iutnc\deefy\exception\InvalidPropertyNameException;
+use iutnc\deefy\exception\NonEditablePropertyException;
+use iutnc\deefy\exception\InvalidPropertyValueException;
 
 class AudioTrack{
     protected string $titre;
@@ -25,12 +24,6 @@ class AudioTrack{
         $this->duree = 0;
         $this->annee='';
     }
-
-
-    /*public function insertTrack():void{
-        $bd = \iutnc\deefy\db\ConnectionFactory::makeConnection();
-        $query  = "INSERT into "
-    }*/
 
     public function __toString() : string{
         return ("<p>{$this->titre} | {$this->artiste}<p><audio controls src={$this->nomFichier}>");

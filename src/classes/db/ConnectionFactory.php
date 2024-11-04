@@ -1,7 +1,11 @@
 <?php
+
 declare(strict_types=1);
+
 namespace iutnc\deefy\db;
+
 use PDO;
+
 class ConnectionFactory{
 
     private static array $tab = [];

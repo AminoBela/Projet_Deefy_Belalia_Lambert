@@ -1,3 +1,10 @@
-<?php 
+<?php
+
 namespace iutnc\deefy\exception;
-class AuthException extends  \Exception{}
+
+use Exception;
+
+class AuthException extends Exception
+{
+
+}

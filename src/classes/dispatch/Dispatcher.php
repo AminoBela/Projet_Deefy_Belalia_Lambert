@@ -15,7 +15,6 @@ class Dispatcher{
         if(isset($_GET['action'])) $this->action = $_GET['action'];
     }
 
-
     public function run(): void {
         $res="Bienvenue !";
         switch($this->action){
@@ -53,12 +52,12 @@ class Dispatcher{
                     <h1>Deefy</h1>
                     <ul>
                         <li><a href="?" class ="boutton">Accueil</a></li>
-                        <li><a href="?action=add-playlist" class ="boutton">Créer Playliste</a></li>
+                        <li><a href="?action=add-playlist" class ="boutton">Créer Playlist</a></li>
                         <li><a href="?action=add-podcasttrack" class ="boutton">Ajouter une piste à la playlist</a></li>
                         <li><a href="?action=display-playlist" class ="boutton">Afficher Playlist</a></li>
                         <p>---------------------</p>
-                        <li><a href="?action=add-user" class ="boutton">register</a></li>
-                        <li><a href="?action=sign-in" class ="boutton">signin</a></li>
+                        <li><a href="?action=add-user" class ="boutton">Créer mon compte</a></li>
+                        <li><a href="?action=sign-in" class ="boutton">Se connecter</a></li>
                     </ul>
                 </nav>
                 <div class="wrapper">

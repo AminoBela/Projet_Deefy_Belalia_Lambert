@@ -1,11 +1,14 @@
 <?php
-declare(strict_types=1);
-namespace iutnc\deefy\render;
-require_once 'vendor/autoload.php';
-use iutnc\deefy\audio\tracks\PodcastTrack as PodcastTrack;
-use iutnc\deefy\audio\tracks\AudioTrack as AudioTrack;
-class PodcastTrackRenderer extends \AudioTrackRenderer{
 
+declare(strict_types=1);
+
+namespace iutnc\deefy\render;
+
+use iutnc\deefy\audio\tracks\PodcastTrack;
+use iutnc\deefy\audio\tracks\AudioTrack;
+
+class PodcastTrackRenderer extends AudioTrackRenderer
+{
     public AudioTrack $piste;
 
     public function __construct(PodcastTrack $piste){
@@ -13,7 +16,11 @@ class PodcastTrackRenderer extends \AudioTrackRenderer{
     }
 
     public function long():string{
-        return  "<p>titre : {$this->piste->titre}</p> <p>genre : {$this->piste->genre}</p> <p>duree : {$this->piste->duree}</p>  <p>annee : {$this->piste->annee}</p> <p>emplacement fichier : {$this->piste->nomFichier}</p>";
+        return  "<p>Titre : {$this->piste->titre}</p> 
+                 <p>Genre : {$this->piste->genre}</p> 
+                 <p>Durée : {$this->piste->duree}</p>  
+                 <p>Année : {$this->piste->annee}</p> 
+                 <p>Emplacement du fichier : {$this->piste->nomFichier}</p>";
     }
 
     public function compact():string{

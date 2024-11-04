@@ -1,8 +1,11 @@
 <?php
 
 namespace iutnc\deefy\auth;
-use iutnc\deefy\exception\AuthException as AuthException;
+
+use iutnc\deefy\exception\AuthException;
+
 use PDO;
+
 class Auth{
 
     public static function authenticate(string $e, string $p):bool{

@@ -1,10 +1,11 @@
 <?php
+
 declare(strict_types=1);
+
 namespace iutnc\deefy\audio\lists;
 
-require_once 'vendor/autoload.php';
+use iutnc\deefy\exception\InvalidPropertyNameException;
 
-use iutnc\deefy\exception\InvalidPropertyNameException as InvalidPropertyNameException;
 class AudioList{
     protected String $nom;
     protected int $nbPiste;
@@ -24,6 +25,6 @@ class AudioList{
 
     public function __get(String $arg):mixed{
         if(property_exists($this, $arg)) return $this->$arg;
-        throw new InvalidPropertyNameException ("$arg: invalid property");
+        throw new InvalidPropertyNameException ("$arg: Propiété invalide");
     } 
 }

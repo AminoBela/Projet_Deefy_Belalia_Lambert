@@ -1,5 +1,8 @@
 <?php
+
 namespace iutnc\deefy\action;
+use iutnc\deefy\auth\Auth;
+
 class AddUserAction extends Action {
     
     public function __construct(){
@@ -20,7 +23,7 @@ class AddUserAction extends Action {
             $p1= $_POST['passwd1'];
             $p2 = $_POST['passwd2'];
             if($p1 === $p2){
-                $res = "<p>".\iutnc\deefy\auth\Auth::register($e, $p1)."</p>";
+                $res = "<p>".Auth::register($e, $p1)."</p>";
             }else{
                 $res = '<p>Mot de passe 1 et 2 différents</p>
                 <form method="post" action="?action=add-user">

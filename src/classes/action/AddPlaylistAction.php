@@ -1,7 +1,9 @@
 <?php
 namespace iutnc\deefy\action;
-use iutnc\deefy\audio\lists\Playlist as Playlist;
-use iutnc\deefy\render\AudioListRenderer as AudioListRenderer;
+
+use iutnc\deefy\audio\lists\Playlist;
+use iutnc\deefy\render\AudioListRenderer;
+
 class AddPlaylistAction extends Action {
     
     public function __construct(){

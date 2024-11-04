@@ -1,9 +1,11 @@
 <?php
-declare(strict_types=1);
-namespace iutnc\deefy\render;
-require_once 'vendor/autoload.php';
 
-use iutnc\deefy\audio\lists\AudioList as AudioList;
+declare(strict_types=1);
+
+namespace iutnc\deefy\render;
+
+use iutnc\deefy\audio\lists\AudioList;
+
 class AudioListRenderer implements Renderer{
 
     public AudioList $list;

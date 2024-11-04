@@ -1,12 +1,11 @@
 <?php 
+
 declare(strict_types=1);
 
-/*
-classe non finie / abandonnée car composer
-*/
-
 namespace loader\Psr4ClassLoader;
-class Psr4ClassLoader{
+
+class Psr4ClassLoader
+{
     private String $prefixe, $root;
 
     public function __construct(String $p, String $r){

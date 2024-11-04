@@ -1,5 +1,7 @@
 <?php
+
 namespace iutnc\deefy\action;
+
 abstract class Action {
 
     protected ?string $http_method = null;

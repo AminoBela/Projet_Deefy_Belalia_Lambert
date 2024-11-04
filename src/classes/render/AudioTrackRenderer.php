@@ -1,8 +1,11 @@
 <?php
+
 declare(strict_types=1);
+
 namespace iutnc\deefy\render;
-require_once 'vendor/autoload.php';
-use iutnc\deefy\audio\tracks\AudioTrack as AudioTrack;
+
+use iutnc\deefy\audio\tracks\AudioTrack;
+
 abstract class AudioTrackRenderer implements Renderer{
 
     protected AudioTrack $piste;

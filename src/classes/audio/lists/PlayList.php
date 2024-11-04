@@ -1,14 +1,14 @@
 <?php
+
 declare(strict_types=1);
 namespace iutnc\deefy\audio\lists;
 
-require_once 'vendor/autoload.php';
-use PDO;
 use Exception;
-use iutnc\deefy\audio\tracks\AudioTrack as AudioTrack;
-use iutnc\deefy\audio\tracks\AlbumTrack as AlbumTrack;
-use iutnc\deefy\audio\tracks\PodcastTrack as PodcastTrack;
-use iutnc\deefy\audio\lists\AudioList as AudioList;
+use PDO;
+use iutnc\deefy\audio\tracks\AudioTrack;
+use iutnc\deefy\audio\tracks\AlbumTrack;
+use iutnc\deefy\audio\tracks\PodcastTrack;
+
 class PlayList extends AudioList{
 
     public function __construct(String $nom, iterable $tab){

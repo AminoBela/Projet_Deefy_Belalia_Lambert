@@ -1,7 +1,10 @@
 <?php
+
 namespace iutnc\deefy\user;
+
 use PDO;
-use iutnc\deefy\audio\lists\Playlist as Playlist;
+use iutnc\deefy\audio\lists\Playlist;
+
 class User{
     private string $email;
     private string $password;
@@ -16,18 +19,17 @@ class User{
     public function getPlaylists(){
         $bd = \iutnc\deefy\db\ConnectionFactory::makeConnection();
 
-        $query ="SELECT p.nom as nom, p.id as idp from user u inner join user2playlist u2 on u.id = u2.id_user
-                                        inner join playlist p on u2.id_pl = p.id
-                            where u.email like ?";
+        $query ="SELECT p.nom as nom, p.id as idp 
+                    from user u inner join user2playlist u2 on u.id = u2.id_user
+                    inner join playlist p on u2.id_pl = p.id
+                    where u.email like ?";
         $prep = $bd->prepare($query);
         $prep->bindParam(1,$this->email);
         $prep->execute();
-
         $tab=[];
         while($data=$prep->fetch(PDO::FETCH_ASSOC)){
             $tab[$data['idp']] = new Playlist($data['nom'], []);
         }
-
         return $tab;
     }
 

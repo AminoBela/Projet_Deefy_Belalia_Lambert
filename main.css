@@ -1,83 +1,63 @@
-html,body{
-    height: 100%;
-    margin : 0;
-  }
-*{
-    text-decoration: none;
-    align-content:  center;
-    font-family: "Trebuchet MS";
+/* Reset de styles de base */
+body, h1, ul, li {
+    margin: 0;
+    padding: 0;
+    list-style: none;
 }
 
-nav{
-    background-color: lightgray;
+/* Styles du corps de la page */
+body {
+    font-family: Verdana, sans-serif;
+    line-height: 1.6;
+    background-color: lightgray; /* Couleur de fond gris clair */
+    color: black; /* Couleur du texte */
+}
+
+/* Styles du titre principal */
+h1 {
+    text-align: center;
+    margin: 20px 0;
+    color: black; /* Couleur du texte du titre */
+}
+
+/* Styles de la navigation */
+nav {
+    background-color: dodgerblue; /* Couleur de fond bleu */
+    padding: 10px 0;
+}
+
+nav ul {
     display: flex;
-    flex-direction: column;
-    flex-basis: 20%;
-}
-ul{
-    justify-content: space-around;
-    display: flex;
-    flex-direction: row;
-    flex-basis: 20%;
-    align-items: stretch;
-    margin-right: 5%;
-    list-style-type: none;
-}
-a{
-    color: black;
-    transition-duration: 0.2s;
-}
-a:hover {
-    size: 1.1em;
+    justify-content: center;
+    text-align: center;
+    width: 100%;
 }
 
-h1{
-    margin-block:0em;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    padding-top: 5px;
+nav li {
+    margin: 0 15px;
+    flex: 1;
 }
 
-.boutton{
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    padding : 5px;
-    opacity: 1;
-    transition: 0.5s;
-    flex-basis: 25%;
-    color : black;
-    font-size: medium;
-}
-.boutton:hover{
+nav a {
     color: white;
-    opacity: 1;
-    border-radius: 40px;
-    background: darkgrey;
+    text-decoration: none;
+    padding: 8px 12px;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+    display: block;
 }
 
-form{
-    border:black,ridge;
-    border-radius: 40px;
-    padding: 5px 0px 0px 5px;
-    display: flex;
-    flex-direction: column;
-    align-items:start;
-}
-input{
-    margin-top: 2px;
-}
-p{
-    margin-block:0em;
+nav a:hover {
+    background-color: #0056b3; /* Couleur de fond au survol */
 }
 
-.wrapper{
-    display: flex;
-    margin:5%;
-    flex-direction: column;
-    padding: 2%;
-    justify-content: center;
-    border-radius: 1em;
-    background-color: lightgray;
+/* Styles du conteneur principal */
+div {
+    max-width: 800px; /* Largeur maximale */
+    margin: 20px auto; /* Centre le conteneur */
+    padding: 20px;
+    background-color: white; /* Couleur de fond blanc */
+    border-radius: 8px; /* Coins arrondis */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Ombre légère */
 }
+

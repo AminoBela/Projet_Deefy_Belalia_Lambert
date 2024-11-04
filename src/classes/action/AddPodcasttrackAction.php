@@ -1,8 +1,11 @@
 <?php
+
 namespace iutnc\deefy\action;
-use iutnc\deefy\audio\tracks\PodcastTrack as PodcastTrack;
-use iutnc\deefy\render\AudioListRenderer as AudioListRenderer;
-class  AddPodcasttrackAction extends Action {
+
+use iutnc\deefy\audio\tracks\PodcastTrack;
+use iutnc\deefy\render\AudioListRenderer;
+
+class AddPodcasttrackAction extends Action {
     
     public function __construct(){
         parent::__construct();
@@ -42,8 +45,6 @@ class  AddPodcasttrackAction extends Action {
                 $l->ajouterPiste($t);
                 $_SESSION['user']['playlist'] = serialize($l);
             }
-    
-    
             $r = new AudioListRenderer($l);
             $res= <<<addT
                 {$r->render()}

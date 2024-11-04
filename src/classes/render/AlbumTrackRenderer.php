@@ -1,10 +1,9 @@
 <?php
+
 declare(strict_types=1);
+
 namespace iutnc\deefy\render;
 
-require_once 'vendor/autoload.php';
-
-use iutnc\deefy\audio\tracks\AlbumTrack as AlbumTrack;
 class AlbumTrackRenderer extends AudioTrackRenderer{
 
     public function __construct(){
@@ -12,7 +11,13 @@ class AlbumTrackRenderer extends AudioTrackRenderer{
      }
 
     public function long():string{
-        return "<p>titre : {$this->piste->titre}</p> <p>album : {$this->piste->album}</p> <p>genre : {$this->piste->genre}</p> <p>duree : {$this->piste->duree}</p> <p>numero : {$this->piste->numPiste}</p>  <p>annee : {$this->piste->annee}</p> <p>emplacement fichier : {$this->piste->nomFichier}</p>"; 
+        return "<p>titre : {$this->piste->titre}</p> 
+                    <p>Album : {$this->piste->album}</p> 
+                    <p>Genre : {$this->piste->genre}</p> 
+                    <p>Duree : {$this->piste->duree}</p> 
+                    <p>Numéro : {$this->piste->numPiste}</p>  
+                    <p>Année : {$this->piste->annee}</p> 
+                    <p>Emplacement du fichier : {$this->piste->nomFichier}</p>";
     }
 
     public function compact():string{

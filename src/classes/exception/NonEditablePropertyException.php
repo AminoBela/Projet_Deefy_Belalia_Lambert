@@ -1,3 +1,10 @@
-<?php 
+<?php
+
 namespace iutnc\deefy\exception;
-class NonEditablePropertyException extends \Exception{}
+
+use Exception;
+
+class NonEditablePropertyException extends Exception
+{
+
+}
