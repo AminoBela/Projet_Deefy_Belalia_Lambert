@@ -6,7 +6,7 @@ namespace iutnc\deefy\db;
 
 use PDO;
 
-class ConnectionFactory
+class  ConnectionFactory
 {
 
     private static array $tab = [];
