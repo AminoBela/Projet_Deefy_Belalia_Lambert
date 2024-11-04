@@ -2,7 +2,7 @@
 
 namespace iutnc\deefy\controller;
 
-use iutnc\deefy\repository\DeefyRepository;
+use iutnc\deefy\auth\Auth;
 
 class AuthController extends BaseController{
 

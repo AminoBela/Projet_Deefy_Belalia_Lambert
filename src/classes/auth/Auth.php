@@ -4,7 +4,6 @@ namespace iutnc\deefy\auth;
 
 use iutnc\deefy\db\ConnectionFactory;
 use iutnc\deefy\exception\AuthException;
-
 use PDO;
 
 class Auth{
@@ -20,7 +19,7 @@ class Auth{
         $prep = $bd->prepare($query);
         $prep->bindParam(1, $e);
         $prep->execute();
-        $data = $prep->fetch(\PDO::FETCH_ASSOC);
+        $data = $prep->fetch(PDO::FETCH_ASSOC);
         $hash = $data['passwd'];
         if (!password_verify($p, $hash)) {
             throw new AuthException(self::ERROR_AUTH_FAILED);
@@ -37,7 +36,7 @@ class Auth{
         $prep = $bd->prepare($query);
         $prep->bindParam(1, $e);
         $prep->execute();
-        $d = $prep->fetchAll(\PDO::FETCH_ASSOC);
+        $d = $prep->fetchAll(PDO::FETCH_ASSOC);
         if (strlen($p) >= self::MIN_PASSWORD_LENGTH && empty($d)) {
             $hash = password_hash($p, PASSWORD_DEFAULT, ['cost' => 10]);
             $insert = "INSERT INTO user (email, passwd) VALUES (?, ?)";

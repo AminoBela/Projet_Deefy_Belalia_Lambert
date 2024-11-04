@@ -3,6 +3,11 @@
 namespace iutnc\deefy\controller;
 
 use iutnc\deefy\auth\Auth;
+use iutnc\deefy\auth\AuthException;
+use iutnc\deefy\db\ConnectionFactory;
+use iutnc\deefy\model\User;
+use PDO;
+
 
 class UserController extends BaseController {
 

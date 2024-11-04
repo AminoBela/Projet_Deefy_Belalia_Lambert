@@ -7,6 +7,7 @@ namespace iutnc\deefy\render;
 use iutnc\deefy\audio\tracks\PodcastTrack;
 use iutnc\deefy\audio\tracks\AudioTrack;
 
+
 class PodcastTrackRenderer extends AudioTrackRenderer
 {
     public AudioTrack $piste;
